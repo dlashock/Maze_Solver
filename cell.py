@@ -31,3 +31,35 @@ class Cell:
         if self.has_bottom_wall:
             bl_br = Line(bottom_left, bottom_right)
             self._win.draw_line(bl_br, fill_color)
+
+    def draw_move(self, to_cell, undo=False):
+        '''if undo:
+            fill_color = "gray"
+        else:
+            fill_color = "red"
+        
+        cell_1_x = (self._x1 + self._x2) // 2
+        cell_1_y = (self._y1 + self._y2) // 2
+        cell_1_point = Point(cell_1_x, cell_1_y)
+
+        cell_2_x = (to_cell._x1 + to_cell._x2) // 2
+        cell_2_y = (to_cell._y1 + to_cell._y2) // 2
+        cell_2_point = Point(cell_2_x, cell_2_y)
+
+        line = Line(cell_1_point, cell_2_point)
+        self._win.draw_line(line, fill_color)'''
+    
+        half_length = abs(self._x2 - self._x1) // 2
+        x_center = half_length + self._x1
+        y_center = half_length + self._y1
+
+        half_length2 = abs(to_cell._x2 - to_cell._x1) // 2
+        x_center2 = half_length2 + to_cell._x1
+        y_center2 = half_length2 + to_cell._y1
+
+        fill_color = "red"
+        if undo:
+            fill_color = "gray"
+
+        line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
+        self._win.draw_line(line, fill_color)

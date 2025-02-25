@@ -11,6 +11,8 @@ def main():
 
     c1.draw(fill_color)
     c2.draw(fill_color) 
+
+    c1.draw_move(c2)
     
     win.wait_for_close()
 
