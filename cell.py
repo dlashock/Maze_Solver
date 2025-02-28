@@ -3,18 +3,23 @@ from line import Line
 from window import Window
 
 class Cell:
-    def __init__(self, x1, x2, y1, y2, window):
+    def __init__(self, window=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self._x1 = x1
-        self._x2 = x2
-        self._y1 = y1
-        self._y2 = y2
+        self._x1 = None
+        self._x2 = None
+        self._y1 = None
+        self._y2 = None
         self._win = window
 
-    def draw(self, fill_color):
+    def draw(self, top_left_x, bottom_right_x, top_left_y, bottom_right_y, fill_color):
+        self._x1 = top_left_x
+        self._x2 = bottom_right_x
+        self._y1 = top_left_y
+        self._y2 = bottom_right_y
+
         top_left = Point(self._x1, self._y1)
         top_right = Point(self._x2, self._y1)
         bottom_left = Point(self._x1, self._y2)
@@ -33,7 +38,7 @@ class Cell:
             self._win.draw_line(bl_br, fill_color)
 
     def draw_move(self, to_cell, undo=False):
-        '''if undo:
+        if undo:
             fill_color = "gray"
         else:
             fill_color = "red"
@@ -47,19 +52,4 @@ class Cell:
         cell_2_point = Point(cell_2_x, cell_2_y)
 
         line = Line(cell_1_point, cell_2_point)
-        self._win.draw_line(line, fill_color)'''
-    
-        half_length = abs(self._x2 - self._x1) // 2
-        x_center = half_length + self._x1
-        y_center = half_length + self._y1
-
-        half_length2 = abs(to_cell._x2 - to_cell._x1) // 2
-        x_center2 = half_length2 + to_cell._x1
-        y_center2 = half_length2 + to_cell._y1
-
-        fill_color = "red"
-        if undo:
-            fill_color = "gray"
-
-        line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
         self._win.draw_line(line, fill_color)
