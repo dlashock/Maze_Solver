@@ -13,6 +13,7 @@ class Cell:
         self._y1 = None
         self._y2 = None
         self._win = window
+        self.visited = False
 
     def draw(self, top_left_x, bottom_right_x, top_left_y, bottom_right_y, fill_color):
         self._x1 = top_left_x

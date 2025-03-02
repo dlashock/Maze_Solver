@@ -5,7 +5,7 @@ from cell import Cell
 from maze import Maze
 
 def main():
-    win = Window(802, 602)
+    win = Window(1200, 1200)
     num_rows = 10
     num_cols = 12
 
